@@ -1,0 +1,43 @@
+.App {
+  color:blue
+}
+
+.App-header {
+  display: flex;
+  background-color: silver;
+  /* flex-direction: column; */
+  justify-content: space-between;
+}
+
+.App-title {
+  color:maroon
+}
+
+.App-menu{
+  background-color: silver;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+.App-products {
+  display:flex;
+  /* justify-content: space-evenly; */
+  flex-wrap:wrap
+  
+
+
+}
+
+.App-item {
+  padding: 10px;
+  border: 2px solid maroon;
+  margin:20px;
+  width: 300px;
+
+
+
+}
+
