@@ -12,17 +12,42 @@ export default function Products() {
     { name: "Product 8", desc: "This is a dummy description", price: 50 },
   ];
   const [products, setProducts] = useState(items);
+  const [cart, setCart] = useState([])
+  const addProduct = ((product)=> {
+    console.log(product.name)
+    setCart((products) => [...products, product]); 
+    console.log(cart)
+  })
+
+  const increment = ((product)=> {
+    console.log("increment")
+  })
+  const decrement = ((product)=> {
+    console.log("decrement")
+  })
   return (
     <div className="App-products">
       {products.map((value, index) => (
-        <div className="App-item">
-          
+        <div className="App-item" key={index}>
           <h3>{value.name}</h3>
           <p>{value.desc}</p>
           <h4>{value.price}</h4>
-          <button>Add</button>
+          <button onClick={() => addProduct(value)}>Add</button>
+        </div>
+      ))}
+      <hr></hr>
+  
+      {cart && cart.map((value, index) => (
+
+          <li>
+          {value.name}
+          {value.desc}
+          {value.price}
+          <button onClick={()=>increment(value)}>+</button>
+          <button onClick={()=>decrement(value)}>-</button>
+          <br></br>
+          </li>
           
-          </div>
       ))}
     </div>
   );
