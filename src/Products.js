@@ -1,54 +1,28 @@
-import React from "react";
-import { useState } from "react";
-export default function Products() {
-  const items = [
-    { name: "Product 1", desc: "This is a dummy description", price: 30 },
-    { name: "Product 2", desc: "This is a dummy description", price: 80 },
-    { name: "Product 3", desc: "This is a dummy description", price: 90 },
-    { name: "Product 4", desc: "This is a dummy description", price: 50 },
-    { name: "Product 5", desc: "This is a dummy description", price: 40 },
-    { name: "Product 6", desc: "This is a dummy description", price: 50 },
-    { name: "Product 7", desc: "This is a dummy description", price: 70 },
-    { name: "Product 8", desc: "This is a dummy description", price: 50 },
-  ];
-  const [products, setProducts] = useState(items);
-  const [cart, setCart] = useState([])
-  const addProduct = ((product)=> {
-    console.log(product.name)
-    setCart((products) => [...products, product]); 
-    console.log(cart)
-  })
+import React, { useContext } from "react";
+import { CartContext } from "./App";
 
-  const increment = ((product)=> {
-    console.log("increment")
-  })
-  const decrement = ((product)=> {
-    console.log("decrement")
-  })
+export default function Products() {
+  const { addProductToCart } = useContext(CartContext);
+
+  const items = [
+    { name: "Product 1", desc: "Product 1", price: 30 },
+    { name: "Product 2", desc: "Product 2", price: 80 },
+    { name: "Product 3", desc: "Product 3", price: 90 },
+    { name: "Product 4", desc: "Product 4", price: 90 },
+    { name: "Product 5", desc: "Product 5", price: 90 }
+  ];
+
   return (
-    <div className="App-products">
-      {products.map((value, index) => (
+    <>
+      <h2>Available Products</h2>
+      {items.map((product, index) => (
         <div className="App-item" key={index}>
-          <h3>{value.name}</h3>
-          <p>{value.desc}</p>
-          <h4>{value.price}</h4>
-          <button onClick={() => addProduct(value)}>Add</button>
+          <h3>{product.name}</h3>
+          <p>{product.desc}</p>
+          <h4>${product.price}</h4>
+          <button onClick={() => addProductToCart(product)}>Add to Cart</button>
         </div>
       ))}
-      <hr></hr>
-  
-      {cart && cart.map((value, index) => (
-
-          <li>
-          {value.name}
-          {value.desc}
-          {value.price}
-          <button onClick={()=>increment(value)}>+</button>
-          <button onClick={()=>decrement(value)}>-</button>
-          <br></br>
-          </li>
-          
-      ))}
-    </div>
+    </>
   );
 }
